@@ -5,7 +5,7 @@ import Movie from './Movie'
 export default class Movies extends Component {
     static contextType = MovieContext;
     render() {
-        let {movies} = this.context;
+        let {movies, addFavourite} = this.context;
         return (
             <Container>
                 <Typography variant="h4">Movies</Typography>
@@ -14,7 +14,7 @@ export default class Movies extends Component {
                         movies.map((movie, id) => {
                             return (
                                 <Grid key={id} item xs={12} md={4} lg={3}>
-                                    <Movie movie={movie} />
+                                    <Movie movie={movie} addFavourite={addFavourite} />
                                 </Grid>
                             )
                         })

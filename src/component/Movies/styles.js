@@ -2,7 +2,7 @@ import {makeStyles} from '@material-ui/core/styles'
 
 const styles = makeStyles((theme) => ({
   root: {
-    position:"relative"
+    position: 'relative',
   },
   media: {
     height: '400px',
@@ -44,8 +44,17 @@ const styles = makeStyles((theme) => ({
     transform: 'translate(-50%, -50%)',
     textAlign: 'center',
     opacity: '1',
-    color:'red'
   },
+
+  heart: {
+    height:'100px',
+    width: '100px',
+    background:  'url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat',
+    cursor:'pointer',
+    transition:'background-position 1s steps(28)',
+    transitionDuration:'0s'
+  },
+  
 }))
 
 export default styles;
