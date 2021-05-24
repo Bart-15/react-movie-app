@@ -3,37 +3,41 @@ import { Card, CardContent, CardMedia, Typography } from '@material-ui/core'
 import useStyles from './styles'
 import Heart from 'react-animated-heart'
 
-const Movie = ({ movie, addFavourite }) => {
+const Movie = ({ movie, handleFavourite }) => {
   const [hover, setHover] = useState(-1)
   const [isClick, setClick] = useState(false)
   const handleHover = (id) => {
     setHover(id)
   }
-
-  const handleClick = () => {
-    setClick(!isClick)
-    addFavourite(movie)
-  }
+  
   
   // const handleClick = () => {
   //   console.log('hello')
-  // }
   const classes = useStyles()
+  // }
   return (
     <Card
       className={classes.root}
-      onMouseOver={() => handleHover(movie.id)}
+      onMouseOver={() => handleHover(movie.imdbID)}
       onMouseOut={() => setHover(-1)}
     >
-      <CardMedia image={movie.poster} className={classes.media} />
+      <CardMedia image={movie.Poster} className={classes.media} />
       <CardContent className={classes.footerContainer}>
-        <Typography variant='h6'>{movie.title}</Typography>
+        <Typography variant='subtitle1'>{movie.Title}</Typography>
         <Typography variant='subtitle1' className={classes.left}>
-          {movie.year}
+          {movie.Year}
         </Typography>
       </CardContent>
-      <div className={hover === movie.id ? classes.showMiddle : classes.middle}>
-        <Heart isClick={isClick} onClick={handleClick} />
+      <div
+        className={hover === movie.imdbID ? classes.showMiddle : classes.middle}
+      >
+        <div onClick={()=>handleFavourite(movie)}>
+          <Heart
+            styles={{ width: '100px' }}
+            isClick={isClick}
+            onClick={() => setClick(!isClick)}
+          />
+        </div>
       </div>
     </Card>
   )

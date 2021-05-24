@@ -2,11 +2,9 @@ import React from 'react'
 
 import ReactDOM from 'react-dom'
 import App from './App'
-import { MovieProvider } from '../src/context'
+
 import './index.css'
 ReactDOM.render(
-  <MovieProvider>
-    <App />
-  </MovieProvider>,
+    <App />,
   document.getElementById('root')
 )

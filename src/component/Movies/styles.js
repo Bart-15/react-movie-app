@@ -54,7 +54,12 @@ const styles = makeStyles((theme) => ({
     transition:'background-position 1s steps(28)',
     transitionDuration:'0s'
   },
-  
+   headingContainer : {
+      display:'flex',
+      flexDirection:'row',
+      justifyContent:'space-between',
+      alignItems:'center'
+   }
 }))
 
 export default styles;

@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-
+import React from 'react'
 import {
   Container,
   Typography,
@@ -9,38 +8,33 @@ import {
   CardMedia,
 } from '@material-ui/core'
 
-import {MovieContext} from '../../context'
-export default class Favourites extends Component {
-    static  contextType = MovieContext;
-    render() {
-        let {favourites} = this.context;
-        console.log(favourites);
-        if(!favourites) {
-            return <div>Hello </div>
-        }
-        return (
-            <>
-                <Container>
-                    <Typography variant="h4">Favourite Movies</Typography>
-                    <Grid container spacing={3}>
-                        {
-                            favourites.map((movie, id) => {
-                                return (
-                                <Grid item key={id} xs={12} md={4} lg={3}>
-                                    <Card>
-                                        <CardMedia image={movie.poster} />
-                                        <CardContent>
-                                            <Typography variant='h6'>{movie.title}</Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-                                )
-                            })
-                        }
-                    </Grid>
-                </Container>
-            </>
-        )
+import useStyles from '@material-ui/core'
+const Favourites = ({favourites}) => {
+    if(!favourites) {
+        return <h1>''</h1>
     }
+    return (
+      <div>
+        <Container>
+          <Typography variant='h4'>Favourite Movies</Typography>
+          <Grid container spacing={3}>
+            {favourites.map((movie) => {
+                console.log(movie.Poster)
+              return (
+                <Grid item key={movie.imdbID} xs={12} md={4} lg={3}>
+                  <Card>
+                    <CardMedia image={movie.Poster} />
+                    <CardContent>
+                      <Typography variant='h6'>{movie.Title}</Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              )
+            })}
+          </Grid>
+        </Container>
+      </div>
+    )
 }
 
+export default Favourites

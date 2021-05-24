@@ -4,7 +4,7 @@ import Favourites from './component/Favourite/Favourites'
 const App = () => {
     return (
         <div>
-            <Movies />
+            <Movies/>
             <Favourites />
         </div>
     )
