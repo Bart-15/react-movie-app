@@ -6,7 +6,7 @@ const styles = makeStyles((theme) => ({
   },
   media: {
     height: '400px',
-    objectFit: 'cover',
+    objectFit: 'fiil',
     '&:hover': {
       opacity: '0.3',
       transition: '.2s  ease',
@@ -59,6 +59,12 @@ const styles = makeStyles((theme) => ({
       flexDirection:'row',
       justifyContent:'space-between',
       alignItems:'center'
+   },
+
+   heartLength : {
+     position:'absolute',
+     fontWeight:'bold',
+     color:'#fff'
    }
 }))
 

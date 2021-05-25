@@ -1,37 +1,79 @@
 import React from 'react'
 import {
   Container,
-  Typography,
   Grid,
   Card,
-  CardContent,
   CardMedia,
+  Button,
 } from '@material-ui/core'
+import {RiDeleteBin6Line} from 'react-icons/ri'
+import {Link} from 'react-router-dom'
+import MovieHeading from '../Movies/MovieHeading'
+import useStyles from './styles'
+const Favourites = ({favourites, removeFavourites, removeAll}) => {
+  const classes = useStyles();
+  
+  // console.log(favourites)
+ 
+  // const getUnique = (items, value) => {
+  //   return [...new Set(items.map((item) => item[value]))]
+  // }
 
-import useStyles from '@material-ui/core'
-const Favourites = ({favourites}) => {
-    if(!favourites) {
-        return <h1>''</h1>
-    }
+  // let filteredMovies = getUnique(favourites, 'imdbID')
+  // filteredMovies = ['imdbID', ...filteredMovies]
+
+  // console.log(filteredMovies)
+
+
+  if(favourites <= 0) {
+    return (
+      <Container style={{padding:'30px'}}>
+        <MovieHeading heading="Try adding movie"  />
+        <Button className={classes.btn} component={Link} to="/" variant="contained" color="primary">Back to home</Button>
+      </Container>
+    )
+  }
     return (
       <div>
         <Container>
-          <Typography variant='h4'>Favourite Movies</Typography>
+          <MovieHeading heading='My Favourites' />
           <Grid container spacing={3}>
             {favourites.map((movie) => {
-                console.log(movie.Poster)
+              console.log(movie.Poster)
               return (
                 <Grid item key={movie.imdbID} xs={12} md={4} lg={3}>
                   <Card>
-                    <CardMedia image={movie.Poster} />
-                    <CardContent>
-                      <Typography variant='h6'>{movie.Title}</Typography>
-                    </CardContent>
+                    <CardMedia className={classes.media} image={movie.Poster}>
+                      <RiDeleteBin6Line
+                        onClick={() => removeFavourites(movie)}
+                        className={classes.deleteIcon}
+                        size={50}
+                      />
+                    </CardMedia>
                   </Card>
                 </Grid>
               )
             })}
           </Grid>
+          <div style={{ float: 'right', padding: '30px' }}>
+            <Button
+              className={classes.btn}
+              component={Link}
+              to='/'
+              variant='contained'
+              color='primary'
+            >
+              +Add More
+            </Button>
+            <Button
+              className={classes.btn}
+              onClick={removeAll}
+              variant='contained'
+              color='primary'
+            >
+              Delete All
+            </Button>
+          </div>
         </Container>
       </div>
     )

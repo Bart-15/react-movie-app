@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { TextField, InputAdornment } from '@material-ui/core'
-import {BiSearchAlt} from 'react-icons/bi'
+import SearchIcon from '@material-ui/icons/Search'
 // Styling
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,6 +11,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  [theme.breakpoints.up('md')]: {
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        width: '50ch',
+      },
+    },
+  },
 }))
 
 
@@ -22,16 +30,11 @@ const SearchBox = (props) => {
             <TextField
               id='outlined-basic'
               variant='outlined'
-              label="Search..."
+              label={<SearchIcon/>}
+              placeholder="Search Movie"
               value={props.value}
               onChange={(event) => props.setSearchValue(event.target.value)}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position='start'>
-                    <BiSearchAlt />
-                  </InputAdornment>
-                ),
-              }}
+            
             />
         </div>
     )
