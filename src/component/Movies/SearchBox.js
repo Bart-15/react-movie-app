@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { TextField, InputAdornment } from '@material-ui/core'
+import { TextField } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
 // Styling
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchBox = (props) => {
     const classes = useStyles()
-    console.log(props)
     return (
         <div className={classes.root}>
             <TextField

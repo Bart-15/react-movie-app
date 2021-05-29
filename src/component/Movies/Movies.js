@@ -10,12 +10,20 @@ import useStyles from './styles'
 const Movies = ({ searchValue, setSearchValue, movies, handleFavourite, favourites }) => {
   const classes = useStyles()
 
-  //   console.log(movie)
+
+const EmptyContainer = () => {
+  return (
+    <div className={classes.emptyContainer}>
+      <Typography variant='h6'>Hello, welcome to my simple movie  app free to explore! Try search something :)</Typography>
+    </div>
+  )
+}
+
   return (
     <>
       <Container>
         <div className={classes.headingContainer}>
-          <MovieHeading heading='Movies' />
+          <MovieHeading component={Link} to="/" heading='Bart' />
           <div style={{display:'flex'}}>
             <SearchBox
               searchValue={searchValue}
@@ -29,6 +37,8 @@ const Movies = ({ searchValue, setSearchValue, movies, handleFavourite, favourit
             </Button>
           </div>
         </div>
+
+        {movies.length > 0 ?
         <Grid container spacing={3}>
           {movies.map((movie) => {
             return (
@@ -38,6 +48,8 @@ const Movies = ({ searchValue, setSearchValue, movies, handleFavourite, favourit
             )
           })}
         </Grid>
+        :<EmptyContainer />
+        }
       </Container>
     </>
   )

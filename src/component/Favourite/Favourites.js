@@ -28,21 +28,21 @@ const Favourites = ({favourites, removeFavourites, removeAll}) => {
   if(favourites <= 0) {
     return (
       <Container style={{padding:'30px'}}>
-        <MovieHeading heading="Try adding movie"  />
-        <Button className={classes.btn} component={Link} to="/" variant="contained" color="primary">Back to home</Button>
+        <MovieHeading heading="Your Favourites Is Currently Empty"  />
+        <Button className={classes.btn} component={Link} to="/" color="primary">Back to home</Button>
       </Container>
     )
   }
     return (
       <div>
-        <Container>
+        <Container style={{marginTop:'30px'}}>
           <MovieHeading heading='My Favourites' />
-          <Grid container spacing={3}>
-            {favourites.map((movie) => {
+          <Grid container spacing={3} style={{marginTop:'10px'}}> 
+            {favourites.map((movie, index) => {
               console.log(movie.Poster)
               return (
-                <Grid item key={movie.imdbID} xs={12} md={4} lg={3}>
-                  <Card>
+                <Grid item key={index} xs={12} md={4} lg={3}>
+                  <Card className={classes.root}>
                     <CardMedia className={classes.media} image={movie.Poster}>
                       <RiDeleteBin6Line
                         onClick={() => removeFavourites(movie)}
@@ -60,16 +60,14 @@ const Favourites = ({favourites, removeFavourites, removeAll}) => {
               className={classes.btn}
               component={Link}
               to='/'
-              variant='contained'
-              color='primary'
+             
             >
               +Add More
             </Button>
             <Button
               className={classes.btn}
               onClick={removeAll}
-              variant='contained'
-              color='primary'
+              
             >
               Delete All
             </Button>

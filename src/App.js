@@ -7,6 +7,9 @@ const App = () => {
    const [favourites, setFavourites] = useState([])
    const [searchValue, setSearchValue] = useState('')
 
+
+
+   //Fetch movie
    const fetchMovie = async () => {
      const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=f3946ab3`
 
@@ -18,7 +21,7 @@ const App = () => {
      }
    }
 
-  //  remove favourites
+  //  remove favourites and remove from localstorage
    const removeFavourites = (movie) => {
      const newFavourites = favourites.filter(
        (favourite) => favourite.imdbID !== movie.imdbID
@@ -33,8 +36,8 @@ const App = () => {
      localStorage.setItem('my-favourites', JSON.stringify(items))
    }
 
-   //Empty local storage
 
+   //Empty local storage and empty favourites
    const removeAll = () => {
       localStorage.removeItem('my-favourites')
       setFavourites([])
@@ -43,16 +46,18 @@ const App = () => {
 
 
    useEffect(() => {
-     fetchMovie(searchValue)
+     fetchMovie(searchValue);
    }, [searchValue])
 
    useEffect(() => {
-    const movieFavourites = JSON.parse(localStorage.getItem('my-favourites'))
+    const movieFavourites = JSON.parse(localStorage.getItem('my-favourites') || "[]")
 
     setFavourites(movieFavourites)
    }, [])
 
    
+
+   //Add favourites to localstorage
    const addFavouriteMovie = (movie) => {
      const newFavourites = [...favourites, movie]
      setFavourites(newFavourites)
