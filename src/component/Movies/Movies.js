@@ -14,7 +14,9 @@ const Movies = ({ searchValue, setSearchValue, movies, handleFavourite, favourit
 const EmptyContainer = () => {
   return (
     <div className={classes.emptyContainer}>
-      <Typography variant='h6'>Hello, welcome to my simple movie  app free to explore! Try search something :)</Typography>
+      <Typography variant='h6'>
+        Welcome to my simple movie app, free to explore! Try search something :)
+      </Typography>
     </div>
   )
 }
@@ -23,33 +25,34 @@ const EmptyContainer = () => {
     <>
       <Container>
         <div className={classes.headingContainer}>
-          <MovieHeading component={Link} to="/" heading='Bart' />
-          <div style={{display:'flex'}}>
+          <MovieHeading component={Link} to='/' heading='Bart' />
+          <div style={{ display: 'flex' }}>
             <SearchBox
               searchValue={searchValue}
               setSearchValue={setSearchValue}
             />
-            <Button component={Link} to="/favourites">
+            <Button component={Link} to='/favourites'>
               <AiFillHeart size={40} color='red' />
-              <Typography className={classes.heartLength} variant="subtitle1">{
-                favourites.length <= 0 ? '' : favourites.length
-              }</Typography>
+              <Typography className={classes.heartLength} variant='subtitle1'>
+                {favourites.length <= 0 ? '' : favourites.length}
+              </Typography>
             </Button>
           </div>
         </div>
 
-        {movies.length > 0 ?
-        <Grid container spacing={3}>
-          {movies.map((movie) => {
-            return (
-              <Grid key={movie.imdbID} item xs={12} md={4} lg={3}>
-                <Movie movie={movie} handleFavourite={handleFavourite} />
-              </Grid>
-            )
-          })}
-        </Grid>
-        :<EmptyContainer />
-        }
+        {movies.length > 0 ? (
+          <Grid style={{ marginTop: '10px' }} container spacing={3}>
+            {movies.map((movie) => {
+              return (
+                <Grid key={movie.imdbID} item xs={12} md={4} lg={3}>
+                  <Movie movie={movie} handleFavourite={handleFavourite} />
+                </Grid>
+              )
+            })}
+          </Grid>
+        ) : (
+          <EmptyContainer />
+        )}
       </Container>
     </>
   )
